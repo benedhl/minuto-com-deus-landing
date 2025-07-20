@@ -1,5 +1,5 @@
-// Service Worker for Devocional Diário Landing Page
-const CACHE_NAME = 'devocional-diario-v1';
+// Service Worker for Minuto com Deus Landing Page
+const CACHE_NAME = 'minuto-com-deus-v1';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -118,7 +118,7 @@ self.addEventListener('push', (event) => {
   };
 
   event.waitUntil(
-    self.registration.showNotification('Devocional Diário', options)
+    self.registration.showNotification('Minuto com Deus', options)
   );
 });
 

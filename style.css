@@ -875,8 +875,8 @@ body.loading::before {
 .footer {
     background: linear-gradient(135deg, #1a1d29, #2d3142);
     color: white;
-    padding: var(--spacing-2xl) 0;
-    margin-top: var(--spacing-2xl);
+    padding: calc(var(--spacing-2xl) * 1.5) var(--spacing-lg) var(--spacing-2xl);
+    margin-top: calc(var(--spacing-2xl) * 1.5);
     position: relative;
 }
 
@@ -894,12 +894,14 @@ body.loading::before {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: var(--spacing-2xl);
-    margin-bottom: var(--spacing-2xl);
+    margin-bottom: calc(var(--spacing-2xl) * 1.2);
     align-items: start;
+    padding: var(--spacing-lg) 0;
 }
 
 .footer-brand {
     padding-right: var(--spacing-xl);
+    padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-lg) 0;
 }
 
 .footer-brand .logo {
@@ -923,7 +925,10 @@ body.loading::before {
 }
 
 .footer-column {
-    padding-left: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-md);
 }
 
 .footer-column h4 {
@@ -964,10 +969,13 @@ body.loading::before {
 
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: var(--spacing-xl);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    margin-top: var(--spacing-lg);
     text-align: center;
     color: rgba(255, 255, 255, 0.6);
     font-size: var(--font-size-sm);
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
 }
 
 /* Visual Enhancements */

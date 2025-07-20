@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     template_params: {
                         user_email: email,
                         to_email: 'ghlh.dev@gmail.com',
-                        message: `Novo interessado no app Devocional Diário: ${email}`,
-                        from_name: 'Landing Page Devocional Diário'
+                        message: `Novo interessado no app Minuto com Deus: ${email}`,
+                        from_name: 'Landing Page Minuto com Deus'
                     }
                 })
             });
@@ -79,8 +79,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error sending email:', error);
             
             // Fallback: try to open email client
-            const subject = encodeURIComponent('Interesse no App Devocional Diário');
-            const body = encodeURIComponent(`Olá,\n\nTenho interesse em ser notificado quando o app Devocional Diário estiver disponível.\n\nMeu e-mail: ${email}\n\nObrigado!`);
+            const subject = encodeURIComponent('Interesse no App Minuto com Deus');
+            const body = encodeURIComponent(`Olá,\n\nTenho interesse em ser notificado quando o app Minuto com Deus estiver disponível.\n\nMeu e-mail: ${email}\n\nObrigado!`);
             const mailtoLink = `mailto:ghlh.dev@gmail.com?subject=${subject}&body=${body}`;
             
             window.open(mailtoLink, '_blank');
@@ -531,7 +531,7 @@ async function sendViaFormspree(email) {
 
 // Mailto fallback
 function sendViaMailto(email) {
-    const subject = encodeURIComponent('Novo interessado - Devocional Diário');
+    const subject = encodeURIComponent('Novo interessado - Minuto com Deus');
     const body = encodeURIComponent(`Novo interessado no app: ${email}\n\nData: ${new Date().toLocaleString('pt-BR')}`);
     const mailtoLink = `mailto:ghlh.dev@gmail.com?subject=${subject}&body=${body}`;
     
