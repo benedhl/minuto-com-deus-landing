@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://devocionaldario.com.br/sitemap.xml
+
+# Disallow admin or sensitive areas (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow all crawlers to access the site
+# This is a coming soon page that should be indexed
+Crawl-delay: 1

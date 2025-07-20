@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devocional Diário - Em Breve | App de Devocionais e Reflexões Espirituais</title>
+    <meta name="description" content="🙏 Em breve: O aplicativo definitivo para devocionais diários. Cultive sua fé com conteúdo espiritual, versículos bíblicos e reflexões inspiradoras. Cadastre-se para ser notificado!">
+    <meta name="keywords" content="devocional, bíblia, fé, espiritualidade, reflexão, oração, versículos, católico, evangélico, app religioso">
+    <meta name="author" content="Devocional Diário">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://devocionaldario.com.br">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://devocionaldario.com.br">
+    <meta property="og:title" content="Devocional Diário - Em Breve | App de Devocionais Espirituais">
+    <meta property="og:description" content="🙏 O aplicativo definitivo para devocionais diários. Cultive sua fé com conteúdo espiritual, versículos bíblicos e reflexões inspiradoras.">
+    <meta property="og:image" content="https://devocionaldario.com.br/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Devocional Diário">
+    <meta property="og:locale" content="pt_BR">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://devocionaldario.com.br">
+    <meta property="twitter:title" content="Devocional Diário - Em Breve | App de Devocionais Espirituais">
+    <meta property="twitter:description" content="🙏 O aplicativo definitivo para devocionais diários. Cultive sua fé com conteúdo espiritual, versículos bíblicos e reflexões inspiradoras.">
+    <meta property="twitter:image" content="https://devocionaldario.com.br/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#6B73FF">
+    <meta name="msapplication-TileColor" content="#6B73FF">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "Devocional Diário",
+      "description": "O aplicativo definitivo para devocionais diários. Cultive sua fé com conteúdo espiritual, versículos bíblicos e reflexões inspiradoras.",
+      "category": "LifestyleApplication",
+      "operatingSystem": ["Android", "iOS", "Web"],
+      "applicationCategory": "Lifestyle",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "BRL"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Devocional Diário"
+      }
+    }
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Header -->
+            <header class="header">
+                <div class="logo">
+                    <span class="logo-icon">🙏</span>
+                    <span class="logo-text">Devocional Diário</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </header>
+
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        Em desenvolvimento
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Transforme seus dias com apenas 
+                        <span class="highlight">um minuto</span> 
+                        de reflexão espiritual
+                    </h1>
+                    
+                    <p class="hero-description">
+                        O Devocional Diário é o aplicativo definitivo para quem busca cultivar um hábito diário de reflexão espiritual. 
+                        Com conteúdo devocional cuidadosamente selecionado, versículos bíblicos e mensagens inspiradoras.
+                    </p>
+
+                    <!-- Email Signup Form -->
+                    <div class="signup-form">
+                        <h3 class="signup-title">Seja o primeiro a saber quando lançarmos!</h3>
+                        <form class="email-form" id="emailForm">
+                            <div class="form-group">
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    placeholder="Digite seu melhor e-mail"
+                                    required
+                                    class="form-input"
+                                >
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="btn-text">Quero ser notificado</span>
+                                    <span class="btn-loading" style="display: none;">Enviando...</span>
+                                </button>
+                            </div>
+                            <p class="form-note">
+                                📧 Você receberá um e-mail assim que o app estiver disponível
+                            </p>
+                        </form>
+                        <div class="form-success" id="formSuccess" style="display: none;">
+                            <span class="success-icon">✅</span>
+                            <p>Obrigado! Você será notificado quando o app estiver disponível.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App Preview -->
+                <div class="hero-preview">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="app-preview">
+                                <div class="app-header">
+                                    <span class="app-title">Devocional Diário</span>
+                                    <span class="app-streak">🔥 7 dias</span>
+                                </div>
+                                <div class="app-content">
+                                    <div class="devotional-card">
+                                        <div class="devotional-date">Hoje, 20 de Julho</div>
+                                        <h3 class="devotional-title">Confiança no Futuro</h3>
+                                        <p class="devotional-verse">Salmos 42:11</p>
+                                        <div class="devotional-text">
+                                            "Por que estás abatida, ó minha alma, e por que te perturbas em mim? Espera em Deus..."
+                                        </div>
+                                        <div class="devotional-actions">
+                                            <button class="action-btn">❤️</button>
+                                            <button class="action-btn">💭</button>
+                                            <button class="action-btn">📖</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Preview -->
+            <section class="features">
+                <h2 class="features-title">O que você pode esperar</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📖</div>
+                        <h3>Devocionais Diários</h3>
+                        <p>Conteúdo espiritual novo todos os dias com versículos bíblicos e reflexões inspiradoras</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔥</div>
+                        <h3>Sequências de Leitura</h3>
+                        <p>Acompanhe sua jornada e mantenha a motivação com streaks de leitura diária</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">❤️</div>
+                        <h3>Favoritos</h3>
+                        <p>Salve seus devocionais preferidos para revisitar quando quiser</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💭</div>
+                        <h3>Reflexões Pessoais</h3>
+                        <p>Adicione suas próprias reflexões aos devocionais</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔔</div>
+                        <h3>Lembretes Inteligentes</h3>
+                        <p>Notificações personalizadas para não perder seu momento diário</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⛪</div>
+                        <h3>Múltiplas Denominações</h3>
+                        <p>Conteúdo para Católicos, Evangélicos, Ecumênicos e Espíritas</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="testimonials">
+                <h2 class="testimonials-title">O que as pessoas estão dizendo</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Finalmente um app que realmente me ajuda a manter uma rotina espiritual consistente. Mal posso esperar pela versão completa!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👩</div>
+                            <div class="author-info">
+                                <div class="author-name">Maria Santos</div>
+                                <div class="author-role">Beta Tester</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"A interface é linda e muito intuitiva. As reflexões são profundas e me ajudam muito no meu crescimento espiritual."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👨</div>
+                            <div class="author-info">
+                                <div class="author-name">João Silva</div>
+                                <div class="author-role">Líder de Jovens</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"O sistema de streaks me motiva muito! É incrível como apenas alguns minutos por dia podem fazer tanta diferença."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👵</div>
+                            <div class="author-info">
+                                <div class="author-name">Ana Costa</div>
+                                <div class="author-role">Professora aposentada</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Development Roadmap -->
+            <section class="roadmap">
+                <div class="roadmap-header">
+                    <h2 class="roadmap-title">Roadmap de Desenvolvimento</h2>
+                    <p class="roadmap-description">Acompanhe o progresso do desenvolvimento do app</p>
+                </div>
+                <div class="roadmap-timeline">
+                    <div class="roadmap-item completed">
+                        <div class="roadmap-marker"></div>
+                        <div class="roadmap-content">
+                            <h3>Prototipação e Design</h3>
+                            <p>Interface completa, fluxos de usuário e experiência definidos</p>
+                            <span class="roadmap-status">✅ Concluído</span>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap-item completed">
+                        <div class="roadmap-marker"></div>
+                        <div class="roadmap-content">
+                            <h3>Desenvolvimento Core</h3>
+                            <p>Sistema de devocionais, autenticação e funcionalidades básicas</p>
+                            <span class="roadmap-status">✅ Concluído</span>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap-item active">
+                        <div class="roadmap-marker"></div>
+                        <div class="roadmap-content">
+                            <h3>Testes e Refinamentos</h3>
+                            <p>Testes com usuários beta, correções e otimizações finais</p>
+                            <span class="roadmap-status">🔄 Em andamento</span>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap-item">
+                        <div class="roadmap-marker"></div>
+                        <div class="roadmap-content">
+                            <h3>Lançamento Oficial</h3>
+                            <p>Disponibilização nas lojas e lançamento para o público geral</p>
+                            <span class="roadmap-status">📅 Março 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq">
+                <h2 class="faq-title">Perguntas Frequentes</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Quando o app será lançado?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Estamos na fase final de desenvolvimento e testes. O lançamento oficial está previsto para março de 2025. Cadastre-se para receber uma notificação assim que estiver disponível!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>O app será gratuito?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Sim! O app terá uma versão gratuita com acesso aos devocionais diários básicos. Também ofereceremos uma versão premium com recursos avançados como reflexões personalizadas, múltiplas versões bíblicas e conteúdo sem anúncios.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Quais plataformas estarão disponíveis?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>O Devocional Diário estará disponível para Android (Google Play), iOS (App Store) e também como aplicação web que funciona em qualquer navegador moderno.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>O app funciona offline?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Sim! Você poderá baixar os devocionais para leitura offline. Suas reflexões pessoais e progresso também ficam salvos localmente e sincronizam quando você tiver conexão.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Haverá conteúdo para diferentes denominações?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Absolutamente! Teremos conteúdo específico para Católicos, Evangélicos, conteúdo Ecumênico e também material para Espíritas, respeitando as particularidades de cada tradição.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Posso contribuir com o desenvolvimento?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Sim! Estamos sempre abertos a feedback e sugestões. Cadastre-se em nossa lista e você receberá convites para participar de testes beta e compartilhar suas ideias para melhorarmos o app.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interest Counter -->
+            <section class="interest-counter">
+                <div class="counter-content">
+                    <div class="counter-icon">👥</div>
+                    <div class="counter-text">
+                        <div class="counter-number" id="interestCounter">0</div>
+                        <div class="counter-label">pessoas já demonstraram interesse</div>
+                    </div>
+                </div>
+                <p class="counter-cta">Junte-se a elas e seja notificado primeiro!</p>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="logo">
+                            <span class="logo-icon">🙏</span>
+                            <span class="logo-text">Devocional Diário</span>
+                        </div>
+                        <p class="footer-description">
+                            Transformando vidas através da reflexão espiritual diária.
+                        </p>
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Contato</h4>
+                            <a href="mailto:ghlh.dev@gmail.com">E-mail</a>
+                            <a href="#">Suporte</a>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Legal</h4>
+                            <a href="#">Privacidade</a>
+                            <a href="#">Termos de Uso</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Devocional Diário. Todos os direitos reservados.</p>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
