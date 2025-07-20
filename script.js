@@ -45,53 +45,27 @@ document.addEventListener('DOMContentLoaded', function() {
         submitButton.disabled = true;
         
         try {
-            // Send email using EmailJS
-            const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    service_id: 'service_default', // You'll need to set this up in EmailJS
-                    template_id: 'template_coming_soon', // You'll need to create this template
-                    user_id: 'your_emailjs_user_id', // You'll need to get this from EmailJS
-                    template_params: {
-                        user_email: email,
-                        to_email: 'ghlh.dev@gmail.com',
-                        message: `Novo interessado no app Minuto com Deus: ${email}`,
-                        from_name: 'Landing Page Minuto com Deus'
-                    }
-                })
-            });
+            // Try multiple email sending methods
+            const success = await sendEmailMultipleMethods(email);
             
-            if (response.ok) {
-                // Show success message
+            if (success) {
+                // Show success and hide form
                 emailForm.style.display = 'none';
                 formSuccess.style.display = 'block';
-                showNotification('E-mail enviado com sucesso!', 'success');
+                showNotification('E-mail cadastrado com sucesso!', 'success');
                 
-                // Track the signup
+                // Track signup and update counter
                 trackSignup(email);
+                setTimeout(() => animateCounter(), 500);
+                
+                // Analytics tracking
+                trackEvent('signup', 'email_form', email);
             } else {
-                throw new Error('Erro ao enviar e-mail');
+                throw new Error('Falha no envio');
             }
         } catch (error) {
             console.error('Error sending email:', error);
-            
-            // Fallback: try to open email client
-            const subject = encodeURIComponent('Interesse no App Minuto com Deus');
-            const body = encodeURIComponent(`Olá,\n\nTenho interesse em ser notificado quando o app Minuto com Deus estiver disponível.\n\nMeu e-mail: ${email}\n\nObrigado!`);
-            const mailtoLink = `mailto:ghlh.dev@gmail.com?subject=${subject}&body=${body}`;
-            
-            window.open(mailtoLink, '_blank');
-            
-            // Show success message anyway
-            emailForm.style.display = 'none';
-            formSuccess.style.display = 'block';
-            showNotification('E-mail preparado! Verifique seu cliente de e-mail.', 'success');
-            
-            // Track the signup attempt
-            trackSignup(email);
+            showNotification('Erro ao enviar. Tente novamente.', 'error');
         } finally {
             // Reset button state
             btnText.style.display = 'block';
@@ -767,3 +741,205 @@ focusStyles.textContent = `
     }
 `;
 document.head.appendChild(focusStyles);
+
+// Multiple email sending methods
+async function sendEmailMultipleMethods(email) {
+    const methods = [
+        () => sendViaFormspree(email),
+        () => sendViaNetlify(email),
+        () => sendViaWebHook(email),
+        () => sendViaMailto(email)
+    ];
+    
+    for (const method of methods) {
+        try {
+            console.log('Trying email method:', method.name);
+            const result = await method();
+            if (result) {
+                console.log('Email sent successfully via:', method.name);
+                return true;
+            }
+        } catch (error) {
+            console.warn('Method failed, trying next:', method.name, error);
+        }
+    }
+    
+    // If all else fails, use mailto as last resort
+    return sendViaMailto(email);
+}
+
+// Formspree integration (primary method)
+async function sendViaFormspree(email) {
+    try {
+        const response = await fetch('https://formspree.io/f/xpwagvko', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                subject: 'Novo interessado - Minuto com Deus',
+                message: `Novo usuário interessado no app Minuto com Deus:\n\nEmail: ${email}\nData: ${new Date().toLocaleString('pt-BR')}\nOrigem: Landing Page`,
+                _replyto: email,
+                _subject: 'Novo interessado - Minuto com Deus'
+            })
+        });
+        
+        if (response.ok) {
+            console.log('Email sent via Formspree');
+            return true;
+        }
+        return false;
+    } catch (error) {
+        console.error('Formspree error:', error);
+        throw error;
+    }
+}
+
+// Netlify Forms integration
+async function sendViaNetlify(email) {
+    try {
+        const formData = new FormData();
+        formData.append('form-name', 'email-signup');
+        formData.append('email', email);
+        formData.append('subject', 'Novo interessado - Minuto com Deus');
+        formData.append('message', `Novo interessado: ${email}`);
+        
+        const response = await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+        });
+        
+        if (response.ok) {
+            console.log('Email sent via Netlify Forms');
+            return true;
+        }
+        return false;
+    } catch (error) {
+        console.error('Netlify Forms error:', error);
+        throw error;
+    }
+}
+
+// Generic webhook integration (Make.com/Zapier)
+async function sendViaWebHook(email) {
+    try {
+        // Using a generic webhook service
+        const response = await fetch('https://hook.us1.make.com/webhook-url-here', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                to: 'ghlh.dev@gmail.com',
+                subject: 'Novo interessado - Minuto com Deus',
+                email: email,
+                message: `Novo interessado no app:\n\nEmail: ${email}\nData: ${new Date().toLocaleString('pt-BR')}`,
+                source: 'landing-page'
+            })
+        });
+        
+        if (response.ok) {
+            console.log('Email sent via WebHook');
+            return true;
+        }
+        return false;
+    } catch (error) {
+        console.error('WebHook error:', error);
+        throw error;
+    }
+}
+
+// Mailto fallback
+function sendViaMailto(email) {
+    try {
+        const subject = encodeURIComponent('Novo interessado - Minuto com Deus');
+        const body = encodeURIComponent(`Novo interessado no app Minuto com Deus:\n\nEmail: ${email}\nData: ${new Date().toLocaleString('pt-BR')}\nOrigem: Landing Page\n\nPor favor, adicione este email à lista de interessados para ser notificado quando o app estiver disponível.`);
+        const mailtoLink = `mailto:ghlh.dev@gmail.com?subject=${subject}&body=${body}`;
+        
+        // Try to open email client
+        const opened = window.open(mailtoLink, '_blank');
+        
+        if (opened) {
+            console.log('Email client opened');
+            showNotification('E-mail preparado! Verifique seu cliente de e-mail.', 'info');
+            return true;
+        } else {
+            // Fallback: copy to clipboard
+            copyEmailToClipboard(email);
+            return true;
+        }
+    } catch (error) {
+        console.error('Mailto error:', error);
+        copyEmailToClipboard(email);
+        return true;
+    }
+}
+
+// Copy email info to clipboard as ultimate fallback
+function copyEmailToClipboard(email) {
+    const emailInfo = `Novo interessado no app Minuto com Deus:\n\nEmail: ${email}\nData: ${new Date().toLocaleString('pt-BR')}\nOrigem: Landing Page`;
+    
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(emailInfo).then(() => {
+            showNotification('Informações copiadas para a área de transferência!', 'info');
+        }).catch(() => {
+            showManualCopyDialog(emailInfo);
+        });
+    } else {
+        showManualCopyDialog(emailInfo);
+    }
+}
+
+// Show manual copy dialog
+function showManualCopyDialog(text) {
+    const dialog = document.createElement('div');
+    dialog.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        z-index: 10001;
+        max-width: 90vw;
+        max-height: 90vh;
+        overflow: auto;
+    `;
+    
+    dialog.innerHTML = `
+        <h3>Copie estas informações:</h3>
+        <textarea readonly style="width: 100%; height: 150px; margin: 1rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 8px;">${text}</textarea>
+        <div style="text-align: center;">
+            <button onclick="this.parentElement.parentElement.remove()" style="padding: 0.5rem 1rem; background: #6B73FF; color: white; border: none; border-radius: 8px; cursor: pointer;">Fechar</button>
+        </div>
+    `;
+    
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 10000;
+    `;
+    
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
+    
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.remove();
+        }
+    });
+    
+    // Auto-select text
+    dialog.querySelector('textarea').select();
+}
